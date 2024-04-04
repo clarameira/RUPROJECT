@@ -7,7 +7,7 @@ public class Avaliacao {
     private int classificacao;
     private String comentario;
 
-    public Avaliacao(Aluno aluno, ItemCard itemCard , int classificacao, String comentario) {
+    public Avaliacao(Aluno aluno, ItemCard itemCard, int classificacao, String comentario) {
         this.aluno = aluno;
         this.itemCard = itemCard;
         this.classificacao = classificacao;

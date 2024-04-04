@@ -1,20 +1,9 @@
 package com.example;
 
-public class Aluno {
+public class Aluno extends Usuario {
 
-    private String nome;
-    private String id;
-
-    public Aluno(String nome, String id) {
-        this.nome = nome;
-        this.id = id;
+    public Aluno(String login, String senha) {
+        super(login, senha); 
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getId() {
-        return id;
-    }
 }
