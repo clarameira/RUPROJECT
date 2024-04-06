@@ -30,7 +30,10 @@ public class Restaurante {
 
         int opcao;
         do {
-            System.out.println("Bem-vindo ao Restaurante Universitário!");
+            System.out.println("-----------------------------------------------");
+            System.out.println("Bem-vindo ao Restaurante Universitário UFERSA!");
+            System.out.println("CAMPUS PAU DOS FERROS");
+            System.out.println("-----------------------------------------------\n");
             System.out.println("1. Fazer login como administrador");
             System.out.println("2. Fazer login como aluno");
             System.out.println("3. Criar uma conta como administrador");
@@ -54,7 +57,7 @@ public class Restaurante {
                     cadastrarAluno();
                     break;
                 case 5:
-                    System.out.println("Saindo...");
+                    System.out.println("Saindo.");
                     System.exit(0);
                     break;
                 default:
