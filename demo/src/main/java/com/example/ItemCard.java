@@ -22,4 +22,21 @@ public class ItemCard {
     public double getPreco() {
         return preco;
     }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemCard{" +
+                "dia='" + dia + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                '}';
+    }
 }

@@ -8,8 +8,6 @@ public class Cardapio {
 
     public Cardapio() {
         this.itens = new ArrayList<>();
-        this.itens.add(new ItemCard("Segunda-feira:", "Arroz, Frango, Batata e Feijão", 2.50));
-        this.itens.add(new ItemCard("Terça-feira:", "Paçoca, macarrão, feijoada", 2.50));
     }
 
     public void adicionarItem(ItemCard item) {

@@ -148,11 +148,13 @@ public class Restaurante {
             System.out.println("\nMenu Administrador:");
             System.out.println("1. Exibir cardápio");
             System.out.println("2. Adicionar item ao cardápio");
-            System.out.println("3. Sair");
+            System.out.println("3. Editar item do cardápio");
+            System.out.println("4. Remover item do cardápio");
+            System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
             sc.nextLine(); // Consumir a quebra de linha
-
+    
             switch (opcao) {
                 case 1:
                     cardapio.exibir();
@@ -161,12 +163,18 @@ public class Restaurante {
                     adicionarItemCardapio();
                     break;
                 case 3:
+                    editarItemCardapio();
+                    break;
+                case 4:
+                    removerItemCardapio();
+                    break;
+                case 5:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != 3);
+        } while (opcao != 5);
     }
 
     private void exibirMenuAluno() {
@@ -209,6 +217,40 @@ public class Restaurante {
         cardapio.adicionarItem(novoItem);
         salvarItemCardapio(novoItem);
         System.out.println("Item adicionado ao cardápio com sucesso!");
+    }
+
+    private void editarItemCardapio() {
+        System.out.print("Insira o dia do item que deseja editar: ");
+        String dia = sc.nextLine();
+        ItemCard item = cardapio.buscarItem(dia);
+    
+        if (item != null) {
+            System.out.println("Item encontrado: " + item);
+            System.out.print("Insira a nova descrição: ");
+            String novaDescricao = sc.nextLine();
+            System.out.print("Insira o novo preço: ");
+            double novoPreco = sc.nextDouble();
+            sc.nextLine(); // Consumir a quebra de linha
+    
+            item.setDescricao(novaDescricao);
+            item.setPreco(novoPreco);
+            System.out.println("Item do cardápio editado com sucesso!");
+        } else {
+            System.out.println("Item não encontrado no cardápio.");
+        }
+    }
+    
+    private void removerItemCardapio() {
+        System.out.print("Insira o dia do item que deseja remover: ");
+        String dia = sc.nextLine();
+        ItemCard item = cardapio.buscarItem(dia);
+    
+        if (item != null) {
+            cardapio.removerItem(item);
+            System.out.println("Item do cardápio removido com sucesso!");
+        } else {
+            System.out.println("Item não encontrado no cardápio.");
+        }
     }
     
     private void salvarItemCardapio(ItemCard item) {
@@ -298,6 +340,5 @@ public class Restaurante {
             System.out.println("Erro ao salvar usuários: " + e.getMessage());
         }
     }
-
-    
+ 
 }
