@@ -30,7 +30,7 @@ public class Restaurante {
 
         int opcao;
         do {
-            System.out.println("-----------------------------------------------");
+            System.out.println("\n-----------------------------------------------");
             System.out.println("Bem-vindo ao Restaurante Universitário UFERSA!");
             System.out.println("CAMPUS PAU DOS FERROS");
             System.out.println("-----------------------------------------------\n");
@@ -67,7 +67,9 @@ public class Restaurante {
     }
 
     private void cadastrarAdmin() {
+        System.out.println("\n-----------------------------------------------");
         System.out.println("Cadastro de Administrador:");
+        System.out.println("-----------------------------------------------\n");
 
         System.out.print("Insira o login: ");
         String login = sc.nextLine();
@@ -79,10 +81,15 @@ public class Restaurante {
         salvarUsuarios();
 
         System.out.println("Administrador cadastrado com sucesso!");
+        System.out.println("-----------------------------------------------\n");
+
+        iniciar();
     }
 
     private void cadastrarAluno() {
+        System.out.println("\n-----------------------------------------------");
         System.out.println("Cadastro de Aluno:");
+        System.out.println("-----------------------------------------------\n");
 
         System.out.print("Insira o login: ");
         String login = sc.nextLine();
@@ -94,6 +101,9 @@ public class Restaurante {
         salvarUsuarios();
 
         System.out.println("Aluno cadastrado com sucesso!");
+        System.out.println("-----------------------------------------------\n");
+
+        iniciar();
     }
 
     private void loginAdmin() {
