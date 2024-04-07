@@ -235,6 +235,7 @@ public class Restaurante {
             item.setDescricao(novaDescricao);
             item.setPreco(novoPreco);
             System.out.println("Item do cardápio editado com sucesso!");
+            atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
         }
@@ -248,8 +249,22 @@ public class Restaurante {
         if (item != null) {
             cardapio.removerItem(item);
             System.out.println("Item do cardápio removido com sucesso!");
+            atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
+        }
+    }
+    
+    private void atualizarArquivoCardapio() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("itenscard.txt"));
+            for (ItemCard item : cardapio.itens) {
+                writer.write(item.getDia() + "," + item.getDescricao() + "," + item.getPreco());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar arquivo do cardápio: " + e.getMessage());
         }
     }
     
