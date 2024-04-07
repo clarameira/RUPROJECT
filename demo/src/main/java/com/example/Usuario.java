@@ -3,13 +3,13 @@ package com.example;
 public class Usuario {
     private String login;
     private String senha;
-    private int tipoUsuario; // 1 para admin, 2 para aluno
+    private int tipoUsuario; 
     private boolean loginPermitido;
 
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
-        this.tipoUsuario = 0; // Inicialmente não identificado
+        this.tipoUsuario = 0; 
         this.loginPermitido = false;
     }
 
