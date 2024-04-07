@@ -66,7 +66,7 @@ public class Restaurante {
         } while (opcao != 1 && opcao != 2 && opcao != 3 && opcao != 4 && opcao != 5);
     }
 
-    private void cadastrarAdmin() {
+    public void cadastrarAdmin() {
         System.out.println("\n-----------------------------------------------");
         System.out.println("Cadastro de Administrador:");
         System.out.println("-----------------------------------------------\n");
@@ -86,7 +86,7 @@ public class Restaurante {
         iniciar();
     }
 
-    private void cadastrarAluno() {
+    public void cadastrarAluno() {
         System.out.println("\n-----------------------------------------------");
         System.out.println("Cadastro de Aluno:");
         System.out.println("-----------------------------------------------\n");
@@ -106,7 +106,7 @@ public class Restaurante {
         iniciar();
     }
 
-    private void loginAdmin() {
+    public void loginAdmin() {
         System.out.print("Login do administrador: ");
         String login = sc.nextLine();
         System.out.print("Senha: ");
@@ -124,7 +124,7 @@ public class Restaurante {
         System.out.println("Credenciais inválidas!");
     }
 
-    private void loginAluno() {
+    public void loginAluno() {
         System.out.print("Login do aluno: ");
         String login = sc.nextLine();
         System.out.print("Senha: ");
@@ -142,7 +142,7 @@ public class Restaurante {
         System.out.println("Credenciais inválidas!");
     }
 
-    private void exibirMenuAdmin() {
+    public void exibirMenuAdmin() {
         int opcao;
         do {
             System.out.println("\nMenu Administrador:");
@@ -177,7 +177,7 @@ public class Restaurante {
         } while (opcao != 5);
     }
 
-    private void exibirMenuAluno() {
+    public void exibirMenuAluno() {
         int opcao;
         do {
             System.out.println("\nMenu Aluno:");
@@ -204,7 +204,7 @@ public class Restaurante {
         } while (opcao != 3);
     }
 
-    private void adicionarItemCardapio() {
+   public void adicionarItemCardapio() {
         System.out.print("Insira o dia da semana: ");
         String dia = sc.nextLine();
         System.out.print("Insira a descrição: ");
@@ -298,7 +298,7 @@ public class Restaurante {
         }
     }
 
-    private void avaliarCardapio() {
+    public void avaliarCardapio() {
         if (usuarioLogado != null && usuarioLogado instanceof Aluno) {
             System.out.print("Digite sua avaliação (de 1 a 5): ");
             int avaliacao = sc.nextInt();
