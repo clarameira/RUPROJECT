@@ -284,19 +284,33 @@ public class Restaurante {
     }
 
     private void avaliarCardapio() {
-        if (usuarioLogado != null) {
+        if (usuarioLogado != null && usuarioLogado instanceof Aluno) {
             System.out.print("Digite sua avaliação (de 1 a 5): ");
             int avaliacao = sc.nextInt();
             sc.nextLine(); // Consumir a quebra de linha
     
             if (avaliacao >= 1 && avaliacao <= 5) {
-                avaliacoes.add(new Avaliacao((Aluno) usuarioLogado, null, avaliacao, ""));
+                Aluno aluno = (Aluno) usuarioLogado;
+                Avaliacao novaAvaliacao = new Avaliacao(aluno, null, avaliacao, "");
+                avaliacoes.add(novaAvaliacao);
+                salvarAvaliacao(novaAvaliacao);
                 System.out.println("Avaliação realizada com sucesso.");
             } else {
                 System.out.println("Avaliação inválida. Por favor, digite uma avaliação entre 1 e 5.");
             }
         } else {
-            System.out.println("Erro: Nenhum usuário logado.");
+            System.out.println("Erro: Nenhum aluno logado.");
+        }
+    }
+    
+    private void salvarAvaliacao(Avaliacao avaliacao) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("avaliacoes.txt", true));
+            writer.write(avaliacao.getAluno().getLogin() + "," + avaliacao.getClassificacao() + "," + avaliacao.getComentario());
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar avaliação: " + e.getMessage());
         }
     }
 
