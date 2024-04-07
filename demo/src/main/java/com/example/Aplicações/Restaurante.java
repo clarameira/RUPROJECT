@@ -110,6 +110,47 @@ public class Restaurante {
         iniciar();
     }
 
+    private void carregarUsuarios() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 2) {
+                    usuarios.add(new Usuario(parts[0], parts[1]));
+                } else if (parts.length == 3) {
+                    if (parts[2].equals("admin")) {
+                        usuarios.add(new Admin(parts[0], parts[1]));
+                    } else if (parts[2].equals("aluno")) {
+                        usuarios.add(new Aluno(parts[0], parts[1]));
+                    }
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar usuários: " + e.getMessage());
+        }
+    }
+
+    private void salvarUsuarios() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt"));
+            for (Usuario u : usuarios) {
+                if (u instanceof Admin) {
+                    writer.write(u.getLogin() + "," + u.getSenha() + ",admin");
+                } else if (u instanceof Aluno) {
+                    writer.write(u.getLogin() + "," + u.getSenha() + ",aluno");
+                } else {
+                    writer.write(u.getLogin() + "," + u.getSenha());
+                }
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar usuários: " + e.getMessage());
+        }
+    }
+
     public void loginAdmin() {
         System.out.print("Login do administrador: ");
         String login = sc.nextLine();
@@ -330,47 +371,6 @@ public class Restaurante {
             writer.close();
         } catch (IOException e) {
             System.out.println("Erro ao salvar avaliação: " + e.getMessage());
-        }
-    }
-
-    private void carregarUsuarios() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    usuarios.add(new Usuario(parts[0], parts[1]));
-                } else if (parts.length == 3) {
-                    if (parts[2].equals("admin")) {
-                        usuarios.add(new Admin(parts[0], parts[1]));
-                    } else if (parts[2].equals("aluno")) {
-                        usuarios.add(new Aluno(parts[0], parts[1]));
-                    }
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao carregar usuários: " + e.getMessage());
-        }
-    }
-
-    private void salvarUsuarios() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt"));
-            for (Usuario u : usuarios) {
-                if (u instanceof Admin) {
-                    writer.write(u.getLogin() + "," + u.getSenha() + ",admin");
-                } else if (u instanceof Aluno) {
-                    writer.write(u.getLogin() + "," + u.getSenha() + ",aluno");
-                } else {
-                    writer.write(u.getLogin() + "," + u.getSenha());
-                }
-                writer.newLine();
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar usuários: " + e.getMessage());
         }
     }
  
