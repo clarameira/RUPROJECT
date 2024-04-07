@@ -1,7 +1,7 @@
-package com.example;
+package com.example.Aplicações;
 
 public class RestauranteFacade {
-    
+
         private Restaurante restaurante;
     
         public RestauranteFacade() {
