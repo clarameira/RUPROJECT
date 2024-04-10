@@ -1,10 +1,10 @@
 package com.example;
 
-import com.example.Aplicações.RestauranteFacade;
+import com.example.Aplicações.Restaurante;
 
 public class Main {
     public static void main(String[] args) {
-            RestauranteFacade restauranteFacade = new RestauranteFacade();
-            restauranteFacade.iniciar();
+            Restaurante restaurante = new Restaurante();
+            restaurante.iniciar();
         }
 }
