@@ -1,10 +1,5 @@
 package com.example.Aplicações;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,11 +21,9 @@ public class Restaurante {
         this.avaliacoes = new ArrayList<>();
         this.sc = new Scanner(System.in);
         this.usuarios = new ArrayList<>();
-        carregarCardapio(); 
     }
 
     public void iniciar() {
-        carregarUsuarios(); // Carregar dados de usuários do arquivo
 
         int opcao;
         do {
@@ -82,7 +75,6 @@ public class Restaurante {
 
         Admin admin = new Admin(login, senha);
         usuarios.add(admin);
-        salvarUsuarios();
 
         System.out.println("Administrador cadastrado com sucesso!");
         System.out.println("-----------------------------------------------\n");
@@ -102,53 +94,11 @@ public class Restaurante {
 
         Aluno aluno = new Aluno(login, senha);
         usuarios.add(aluno);
-        salvarUsuarios();
 
         System.out.println("Aluno cadastrado com sucesso!");
         System.out.println("-----------------------------------------------\n");
 
         iniciar();
-    }
-
-    private void carregarUsuarios() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("usuarios.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    usuarios.add(new Usuario(parts[0], parts[1]));
-                } else if (parts.length == 3) {
-                    if (parts[2].equals("admin")) {
-                        usuarios.add(new Admin(parts[0], parts[1]));
-                    } else if (parts[2].equals("aluno")) {
-                        usuarios.add(new Aluno(parts[0], parts[1]));
-                    }
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao carregar usuários: " + e.getMessage());
-        }
-    }
-
-    private void salvarUsuarios() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt"));
-            for (Usuario u : usuarios) {
-                if (u instanceof Admin) {
-                    writer.write(u.getLogin() + "," + u.getSenha() + ",admin");
-                } else if (u instanceof Aluno) {
-                    writer.write(u.getLogin() + "," + u.getSenha() + ",aluno");
-                } else {
-                    writer.write(u.getLogin() + "," + u.getSenha());
-                }
-                writer.newLine();
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar usuários: " + e.getMessage());
-        }
     }
 
     public void loginAdmin() {
@@ -198,7 +148,7 @@ public class Restaurante {
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
-            sc.nextLine(); // Consumir a quebra de linha
+            sc.nextLine(); 
     
             switch (opcao) {
                 case 1:
@@ -231,7 +181,7 @@ public class Restaurante {
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
-            sc.nextLine(); // Consumir a quebra de linha
+            sc.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -241,7 +191,7 @@ public class Restaurante {
                     avaliarCardapio();
                     break;
                 case 3:
-                    System.out.println("Saindo...");
+                    System.out.println("Saindo.");
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -256,11 +206,10 @@ public class Restaurante {
         String descricao = sc.nextLine();
         System.out.print("Insira o preço: ");
         double preco = sc.nextDouble();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine(); 
     
         ItemCard novoItem = new ItemCard(dia, descricao, preco);
         cardapio.adicionarItem(novoItem);
-        salvarItemCardapio(novoItem);
         System.out.println("Item adicionado ao cardápio com sucesso!");
     }
 
@@ -275,12 +224,11 @@ public class Restaurante {
             String novaDescricao = sc.nextLine();
             System.out.print("Insira o novo preço: ");
             double novoPreco = sc.nextDouble();
-            sc.nextLine(); // Consumir a quebra de linha
+            sc.nextLine();
     
             item.setDescricao(novaDescricao);
             item.setPreco(novoPreco);
             System.out.println("Item do cardápio editado com sucesso!");
-            atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
         }
@@ -294,66 +242,22 @@ public class Restaurante {
         if (item != null) {
             cardapio.removerItem(item);
             System.out.println("Item do cardápio removido com sucesso!");
-            atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
         }
     }
     
-    private void atualizarArquivoCardapio() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("itenscard.txt"));
-            for (ItemCard item : cardapio.itens) {
-                writer.write(item.getDia() + "," + item.getDescricao() + "," + item.getPreco());
-                writer.newLine();
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao atualizar arquivo do cardápio: " + e.getMessage());
-        }
-    }
-    
-    private void salvarItemCardapio(ItemCard item) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("itenscard.txt", true));
-            writer.write(item.getDia() + "," + item.getDescricao() + "," + item.getPreco());
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar item do cardápio: " + e.getMessage());
-        }
-    }
-    
-    private void carregarCardapio() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("itenscard.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    String dia = parts[0];
-                    String descricao = parts[1];
-                    double preco = Double.parseDouble(parts[2]);
-                    cardapio.adicionarItem(new ItemCard(dia, descricao, preco));
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao carregar cardápio: " + e.getMessage());
-        }
-    }
 
     public void avaliarCardapio() {
         if (usuarioLogado != null && usuarioLogado instanceof Aluno) {
             System.out.print("Digite sua avaliação (de 1 a 5): ");
             int avaliacao = sc.nextInt();
-            sc.nextLine(); // Consumir a quebra de linha
+            sc.nextLine(); 
     
             if (avaliacao >= 1 && avaliacao <= 5) {
                 Aluno aluno = (Aluno) usuarioLogado;
                 Avaliacao novaAvaliacao = new Avaliacao(aluno, null, avaliacao, "");
                 avaliacoes.add(novaAvaliacao);
-                salvarAvaliacao(novaAvaliacao);
                 System.out.println("Avaliação realizada com sucesso.");
             } else {
                 System.out.println("Avaliação inválida. Por favor, digite uma avaliação entre 1 e 5.");
@@ -363,15 +267,4 @@ public class Restaurante {
         }
     }
     
-    private void salvarAvaliacao(Avaliacao avaliacao) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("avaliacoes.txt", true));
-            writer.write(avaliacao.getAluno().getLogin() + "," + avaliacao.getClassificacao() + "," + avaliacao.getComentario());
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar avaliação: " + e.getMessage());
-        }
-    }
- 
 }
