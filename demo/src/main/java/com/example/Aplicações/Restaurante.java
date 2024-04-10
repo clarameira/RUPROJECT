@@ -38,7 +38,7 @@ public class Restaurante {
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
-            sc.nextLine(); // Consumir a quebra de linha
+            sc.nextLine(); 
 
             switch (opcao) {
                 case 1:
