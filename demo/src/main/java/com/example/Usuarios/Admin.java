@@ -49,7 +49,7 @@ public class Admin extends Usuario {
         String senha = sc.nextLine();
 
         for (Usuario u : restaurante.usuarios) {
-            if (u instanceof Admin && u.getLogin().equals(login) && u.getSenha().equals(senha)) {
+            if (u instanceof Admin && login.equals(u.getLogin()) && senha.equals(u.getSenha())) {
                 System.out.println("Login bem-sucedido!");
                 restaurante.usuarioLogado = u;
                 exibirMenuAdmin();
