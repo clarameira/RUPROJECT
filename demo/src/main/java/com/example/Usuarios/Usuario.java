@@ -1,23 +1,16 @@
 package com.example.Usuarios;
 
-import java.util.List;
-import com.example.Aplicações.Cardapio;
-import com.example.Aplicações.Restaurante;
-
 public class Usuario {
-
     private String login;
     private String senha;
     private int tipoUsuario; 
-    protected static Cardapio cardapio;
-    protected List<Usuario> usuarios;
-    protected Usuario usuarioLogado;
-    public Restaurante restaurante;
+    private boolean loginPermitido;
 
-    public Usuario(String login, String senha, List<Usuario> usuarios2, Usuario usuarioLogado2, Restaurante restaurante2) {
+    public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
         this.tipoUsuario = 0; 
+        this.loginPermitido = false;
     }
 
     public String getLogin() {
@@ -30,6 +23,14 @@ public class Usuario {
 
     public int getTipoUsuario() {
         return tipoUsuario;
+    }
+
+    public boolean isLoginPermitido() {
+        return loginPermitido;
+    }
+
+    public void permitirLogin() {
+        loginPermitido = true;
     }
 
     public void setIdentificacao(int tipoUsuario) {
