@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cardapio {
-    List<ItemCard> itens;
+    
+    public List<ItemCard> itens;
 
     public Cardapio() {
         this.itens = new ArrayList<>();
