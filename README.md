@@ -1,1 +1,1 @@
-# RUPROJECT
+O sistema do Restaurante Universitário desempenha um papel crucial na vida dos estudantes. Este projeto visa garantir o acesso às refeições no ambiente acadêmico, funcionando de maneira proveitosa para a empresa ao permitir a exposição dos seus cardápios semanais, gerando assim mais interesse. Além disso, torna-se uma ferramenta muito útil para os usuários, possibilitando a visualização e avaliação das refeições disponíveis.
