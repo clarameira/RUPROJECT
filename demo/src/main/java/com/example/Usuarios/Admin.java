@@ -4,7 +4,9 @@ import com.example.Aplicações.Restaurante;
 import com.example.Aplicações.Cardapio;
 import com.example.Aplicações.ItemCard;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,11 +15,13 @@ public class Admin extends Usuario {
     private Restaurante restaurante;
     private Cardapio cardapio;
 
+
     public Admin(String login, String senha, Restaurante restaurante) {
         super(login, senha); 
         this.cardapio = new Cardapio();
         this.restaurante = restaurante; 
         this.restaurante.usuarios.add(this); 
+        carregarCardapio(); 
     }
 
     Scanner sc = new Scanner(System.in);
@@ -168,6 +172,25 @@ public class Admin extends Usuario {
             writer.close();
         } catch (IOException e) {
             System.out.println("Erro ao salvar item do cardápio: " + e.getMessage());
+        }
+    }
+
+    private void carregarCardapio() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("itenscard.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String dia = parts[0];
+                    String descricao = parts[1];
+                    double preco = Double.parseDouble(parts[2]);
+                    cardapio.adicionarItem(new ItemCard(dia, descricao, preco));
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar cardápio: " + e.getMessage());
         }
     }
 }

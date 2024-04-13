@@ -2,7 +2,9 @@ package com.example.Usuarios;
 
 import com.example.Aplicações.Restaurante;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.Scanner;
 
 import com.example.Aplicações.Avaliacao;
 import com.example.Aplicações.Cardapio;
+import com.example.Aplicações.ItemCard;
+
 
 public class Aluno extends Usuario {
 
@@ -22,6 +26,7 @@ public class Aluno extends Usuario {
         this.avaliacoes = new ArrayList<>();
         this.cardapio = new Cardapio();
         this.restaurante = restaurante; 
+        carregarCardapio();
     }
 
     Scanner sc = new Scanner(System.in);
@@ -122,6 +127,25 @@ public class Aluno extends Usuario {
             writer.close();
         } catch (IOException e) {
             System.out.println("Erro ao salvar avaliação: " + e.getMessage());
+        }
+    }
+
+    private void carregarCardapio() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("itenscard.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String dia = parts[0];
+                    String descricao = parts[1];
+                    double preco = Double.parseDouble(parts[2]);
+                    cardapio.adicionarItem(new ItemCard(dia, descricao, preco));
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar cardápio: " + e.getMessage());
         }
     }
 }

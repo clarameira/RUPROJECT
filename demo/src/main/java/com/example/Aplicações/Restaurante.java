@@ -15,7 +15,6 @@ import com.example.Usuarios.Usuario;
 
 public class Restaurante {
 
-    private Cardapio cardapio;
     private Scanner sc;
     public List<Usuario> usuarios;
     public Usuario usuarioLogado;
@@ -23,12 +22,10 @@ public class Restaurante {
     public Aluno aluno;
 
     public Restaurante() {
-        this.cardapio = new Cardapio();
         this.sc = new Scanner(System.in);
         this.usuarios = new ArrayList<>();
         this.aluno = new Aluno(null, null, this);
         this.admin = new Admin(null, null, this);
-        carregarCardapio(); 
     }
 
     public void iniciar() {
@@ -117,24 +114,4 @@ public class Restaurante {
             System.out.println("Erro ao salvar usuários: " + e.getMessage());
         }
     }
-    
-    private void carregarCardapio() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("itenscard.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    String dia = parts[0];
-                    String descricao = parts[1];
-                    double preco = Double.parseDouble(parts[2]);
-                    cardapio.adicionarItem(new ItemCard(dia, descricao, preco));
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Erro ao carregar cardápio: " + e.getMessage());
-        }
-    }
- 
 }
