@@ -20,10 +20,13 @@ public class Cardapio {
     }
 
     public void exibir() {
-        System.out.println("Cardápio:");
+        System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("CARDÁPIO SEMANAL:");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         for (ItemCard item : itens) {
             System.out.println("- " + item.getDia() + ": " + item.getDescricao() + " - R$" + item.getPreco());
         }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
     public ItemCard buscarItem(String nome) {

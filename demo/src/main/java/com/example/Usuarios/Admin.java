@@ -56,6 +56,7 @@ public class Admin extends Usuario {
             if (u instanceof Admin && login.equals(u.getLogin()) && senha.equals(u.getSenha())) {
                 System.out.println("Login bem-sucedido!");
                 restaurante.usuarioLogado = u;
+                limparTela();
                 exibirMenuAdmin();
                 return;
             }
@@ -114,6 +115,7 @@ public class Admin extends Usuario {
         cardapio.adicionarItem(novoItem);
         salvarItemCardapio(novoItem);
         System.out.println("Item adicionado ao cardápio com sucesso!");
+        limparTela();
     }
 
     private void editarItemCardapio() {
@@ -131,6 +133,7 @@ public class Admin extends Usuario {
             item.setDescricao(novaDescricao);
             item.setPreco(novoPreco);
             System.out.println("Item do cardápio editado com sucesso!");
+            limparTela();
             atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
@@ -145,6 +148,7 @@ public class Admin extends Usuario {
         if (item != null) {
             cardapio.removerItem(item);
             System.out.println("Item do cardápio removido com sucesso!");
+            limparTela();
             atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
@@ -191,6 +195,22 @@ public class Admin extends Usuario {
             reader.close();
         } catch (IOException e) {
             System.out.println("Erro ao carregar cardápio: " + e.getMessage());
+        }
+    }
+
+    
+    public static void limparTela() {
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        try {
+            if (os.contains("windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao limpar a tela: " + e.getMessage());
         }
     }
 }

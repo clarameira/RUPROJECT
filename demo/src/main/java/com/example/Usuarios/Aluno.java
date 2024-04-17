@@ -14,7 +14,6 @@ import com.example.Aplicações.Avaliacao;
 import com.example.Aplicações.Cardapio;
 import com.example.Aplicações.ItemCard;
 
-
 public class Aluno extends Usuario {
 
     private Cardapio cardapio;
@@ -62,13 +61,12 @@ public class Aluno extends Usuario {
             if (u instanceof Aluno && u.getLogin().equals(login) && u.getSenha().equals(senha)) {
                 System.out.println("Login bem-sucedido!");
                 restaurante.usuarioLogado = u;
+                limparTela();
                 exibirMenuAluno();
                 return;
             }
         }
-
         System.out.println("Credenciais inválidas!");
-        
         restaurante.iniciar();
     }
 
@@ -91,7 +89,7 @@ public class Aluno extends Usuario {
                     avaliarCardapio();
                     break;
                 case 3:
-                    System.out.println("Saindo...");
+                    System.out.println("Saindo.");
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -111,6 +109,7 @@ public class Aluno extends Usuario {
                 avaliacoes.add(novaAvaliacao);
                 salvarAvaliacao(novaAvaliacao);
                 System.out.println("Avaliação realizada com sucesso.");
+                limparTela();
             } else {
                 System.out.println("Avaliação inválida. Por favor, digite uma avaliação entre 1 e 5.");
             }
@@ -146,6 +145,21 @@ public class Aluno extends Usuario {
             reader.close();
         } catch (IOException e) {
             System.out.println("Erro ao carregar cardápio: " + e.getMessage());
+        }
+    }
+
+    public static void limparTela() {
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        try {
+            if (os.contains("windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao limpar a tela: " + e.getMessage());
         }
     }
 }
