@@ -94,7 +94,7 @@ public class Admin extends Usuario {
                     removerItemCardapio();
                     break;
                 case 5:
-                    System.out.println("Saindo...");
+                    System.out.println("Saindo.");
                     break;
                 default:
                     System.out.println("Opção inválida!");

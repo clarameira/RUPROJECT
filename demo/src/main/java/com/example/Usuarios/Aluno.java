@@ -59,7 +59,7 @@ public class Aluno extends Usuario {
 
         for (Usuario u : restaurante.usuarios) {
             if (u instanceof Aluno && u.getLogin().equals(login) && u.getSenha().equals(senha)) {
-                System.out.println("Login bem-sucedido!");
+                System.out.println("Login bem sucedido!");
                 restaurante.usuarioLogado = u;
                 limparTela();
                 exibirMenuAluno();
