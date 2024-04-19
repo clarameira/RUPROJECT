@@ -34,15 +34,15 @@ public class Restaurante {
         int opcao;
         do {
             System.out.println("\n-----------------------------------------------");
-            System.out.println("Bem-vindo ao Restaurante Universitário UFERSA!");
-            System.out.println("CAMPUS PAU DOS FERROS");
+            System.out.println(" Bem-vindo ao Restaurante Universitário UFERSA!");
+            System.out.println("            CAMPUS PAU DOS FERROS");
             System.out.println("-----------------------------------------------\n");
-            System.out.println("1. Fazer login como administrador");
-            System.out.println("2. Fazer login como aluno");
-            System.out.println("3. Criar uma conta como administrador");
-            System.out.println("4. Criar uma conta como aluno");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.println("   1. Fazer login como administrador");
+            System.out.println("   2. Fazer login como aluno");
+            System.out.println("   3. Criar uma conta como administrador");
+            System.out.println("   4. Criar uma conta como aluno");
+            System.out.println("   5. Sair");
+            System.out.print("                Escolha uma opção: ");
             opcao = sc.nextInt();
             sc.nextLine(); 
 

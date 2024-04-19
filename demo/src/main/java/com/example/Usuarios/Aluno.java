@@ -32,7 +32,7 @@ public class Aluno extends Usuario {
 
     public void cadastrarAluno(Restaurante restaurante) {
         System.out.println("\n-----------------------------------------------");
-        System.out.println("Cadastro de Aluno:");
+        System.out.println("             Cadastro Aluno:");
         System.out.println("-----------------------------------------------\n");
     
         System.out.print("Insira o login: ");
@@ -44,7 +44,7 @@ public class Aluno extends Usuario {
         restaurante.usuarios.add(aluno);
         restaurante.salvarUsuarios();
     
-        System.out.println("Aluno cadastrado com sucesso!");
+        System.out.println("        Aluno cadastrado com sucesso!");
         System.out.println("-----------------------------------------------\n");
     
         restaurante.iniciar();
@@ -52,7 +52,8 @@ public class Aluno extends Usuario {
     
 
     public void loginAluno() {
-        System.out.print("Login do aluno: ");
+        System.out.println("\n--------------");
+        System.out.println("Login Aluno:");
         String login = sc.nextLine();
         System.out.print("Senha: ");
         String senha = sc.nextLine();
@@ -60,8 +61,8 @@ public class Aluno extends Usuario {
         for (Usuario u : restaurante.usuarios) {
             if (u instanceof Aluno && u.getLogin().equals(login) && u.getSenha().equals(senha)) {
                 System.out.println("Login bem sucedido!");
+                System.out.println("-------------------");
                 restaurante.usuarioLogado = u;
-                limparTela();
                 exibirMenuAluno();
                 return;
             }
@@ -73,11 +74,11 @@ public class Aluno extends Usuario {
     public void exibirMenuAluno() {
         int opcao;
         do {
-            System.out.println("\nMenu Aluno:");
-            System.out.println("1. Exibir cardápio");
-            System.out.println("2. Avaliar cardápio");
-            System.out.println("3. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.println("     \nMenu Aluno:");
+            System.out.println("   1. Exibir cardápio");
+            System.out.println("   2. Avaliar cardápio");
+            System.out.println("   3. Sair");
+            System.out.print("     Escolha uma opção: ");
             opcao = sc.nextInt();
             sc.nextLine(); 
 
@@ -109,7 +110,6 @@ public class Aluno extends Usuario {
                 avaliacoes.add(novaAvaliacao);
                 salvarAvaliacao(novaAvaliacao);
                 System.out.println("Avaliação realizada com sucesso.");
-                limparTela();
             } else {
                 System.out.println("Avaliação inválida. Por favor, digite uma avaliação entre 1 e 5.");
             }
@@ -145,21 +145,6 @@ public class Aluno extends Usuario {
             reader.close();
         } catch (IOException e) {
             System.out.println("Erro ao carregar cardápio: " + e.getMessage());
-        }
-    }
-
-    public static void limparTela() {
-
-        String os = System.getProperty("os.name").toLowerCase();
-
-        try {
-            if (os.contains("windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao limpar a tela: " + e.getMessage());
         }
     }
 }

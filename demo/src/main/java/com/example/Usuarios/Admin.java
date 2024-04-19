@@ -28,7 +28,7 @@ public class Admin extends Usuario {
 
     public void cadastrarAdmin(Restaurante restaurante) {
         System.out.println("\n-----------------------------------------------");
-        System.out.println("Cadastro de Administrador:");
+        System.out.println("            Cadastro Administrador:");
         System.out.println("-----------------------------------------------\n");
     
         System.out.print("Insira o login: ");
@@ -47,7 +47,8 @@ public class Admin extends Usuario {
     }
 
     public void loginAdmin() {
-        System.out.print("Login do administrador: ");
+        System.out.println("\n-------------------");
+        System.out.println("Login Administrador:");
         String login = sc.nextLine();
         System.out.print("Senha: ");
         String senha = sc.nextLine();
@@ -55,8 +56,8 @@ public class Admin extends Usuario {
         for (Usuario u : restaurante.usuarios) {
             if (u instanceof Admin && login.equals(u.getLogin()) && senha.equals(u.getSenha())) {
                 System.out.println("Login bem-sucedido!");
+                System.out.println("-------------------");
                 restaurante.usuarioLogado = u;
-                limparTela();
                 exibirMenuAdmin();
                 return;
             }
@@ -70,13 +71,13 @@ public class Admin extends Usuario {
     public void exibirMenuAdmin() {
         int opcao;
         do {
-            System.out.println("\nMenu Administrador:");
-            System.out.println("1. Exibir cardápio");
-            System.out.println("2. Adicionar item ao cardápio");
-            System.out.println("3. Editar item do cardápio");
-            System.out.println("4. Remover item do cardápio");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.println("     \nMenu Administrador:");
+            System.out.println("      1. Exibir cardápio");
+            System.out.println("      2. Adicionar ao cardápio");
+            System.out.println("      3. Editar no cardápio");
+            System.out.println("      4. Remover do cardápio");
+            System.out.println("      5. Sair");
+            System.out.print("       Escolha uma opção: ");
             opcao = sc.nextInt();
             sc.nextLine();
 
@@ -114,17 +115,16 @@ public class Admin extends Usuario {
         ItemCard novoItem = new ItemCard(dia, descricao, preco);
         cardapio.adicionarItem(novoItem);
         salvarItemCardapio(novoItem);
-        System.out.println("Item adicionado ao cardápio com sucesso!");
-        limparTela();
+        System.out.println("Cardápio do dia adicionado com sucesso!");
     }
 
     private void editarItemCardapio() {
-        System.out.print("Insira o dia do item que deseja editar: ");
+        System.out.print("Insira o dia do cardápio que deseja editar: ");
         String dia = sc.nextLine();
         ItemCard item = cardapio.buscarItem(dia);
     
         if (item != null) {
-            System.out.println("Item encontrado: " + item);
+            System.out.println("Dia encontrado: " + item);
             System.out.print("Insira a nova descrição: ");
             String novaDescricao = sc.nextLine();
             System.out.print("Insira o novo preço: ");
@@ -132,8 +132,7 @@ public class Admin extends Usuario {
             sc.nextLine(); 
             item.setDescricao(novaDescricao);
             item.setPreco(novoPreco);
-            System.out.println("Item do cardápio editado com sucesso!");
-            limparTela();
+            System.out.println("Dia do cardápio editado com sucesso!");
             atualizarArquivoCardapio();
         } else {
             System.out.println("Item não encontrado no cardápio.");
@@ -141,17 +140,16 @@ public class Admin extends Usuario {
     }
     
     private void removerItemCardapio() {
-        System.out.print("Insira o dia do item que deseja remover: ");
+        System.out.print("Insira o dia do cardápio que deseja remover: ");
         String dia = sc.nextLine();
         ItemCard item = cardapio.buscarItem(dia);
     
         if (item != null) {
             cardapio.removerItem(item);
-            System.out.println("Item do cardápio removido com sucesso!");
-            limparTela();
+            System.out.println("Cardápio do dia removido com sucesso!");
             atualizarArquivoCardapio();
         } else {
-            System.out.println("Item não encontrado no cardápio.");
+            System.out.println("Dia não encontrado no cardápio.");
         }
     }
 
@@ -198,19 +196,4 @@ public class Admin extends Usuario {
         }
     }
 
-    
-    public static void limparTela() {
-
-        String os = System.getProperty("os.name").toLowerCase();
-
-        try {
-            if (os.contains("windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao limpar a tela: " + e.getMessage());
-        }
-    }
 }
