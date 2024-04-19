@@ -26,7 +26,7 @@ public class Cardapio {
     // Método para exibir o cardápio na tela
     public void exibir() {
         System.out.println("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("CARDÁPIO SEMANAL:");
+        System.out.println("                         CARDÁPIO SEMANAL:");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         for (ItemCard item : itens) {
             System.out.println("- " + item.getDia() + ": " + item.getDescricao() + " - R$" + item.getPreco());
