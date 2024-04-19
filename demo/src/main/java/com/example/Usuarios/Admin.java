@@ -12,16 +12,16 @@ import java.io.IOException;
 import java.util.Scanner;
 public class Admin extends Usuario {
 
-    private Restaurante restaurante;
-    private Cardapio cardapio;
+    private Restaurante restaurante; // Referência ao restaurante associado ao administrador
+    private Cardapio cardapio; // Armazena o cardápio do restaurante
 
 
     public Admin(String login, String senha, Restaurante restaurante) {
         super(login, senha); 
-        this.cardapio = new Cardapio();
-        this.restaurante = restaurante; 
-        this.restaurante.usuarios.add(this); 
-        carregarCardapio(); 
+        this.cardapio = new Cardapio(); // Inicializa o cardápio do restaurante como uma nova instância de Cardapio
+        this.restaurante = restaurante; // Armazena a referência do restaurante passada como parâmetro
+        this.restaurante.usuarios.add(this); // Adiciona o administrador à lista de usuários do restaurante
+        carregarCardapio(); // Este método é chamado para carregar o cardápio do restaurante
     }
 
     Scanner sc = new Scanner(System.in);

@@ -3,7 +3,6 @@ package com.example.Aplicações;
 import java.util.ArrayList;
 import java.util.List;
 
-// Classe que representa um cardápio semanal
 public class Cardapio {
     
     // Lista de itens do cardápio

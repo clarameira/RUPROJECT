@@ -16,16 +16,16 @@ import com.example.Aplicações.ItemCard;
 
 public class Aluno extends Usuario {
 
-    private Cardapio cardapio;
-    private ArrayList<Object> avaliacoes;
-    private Restaurante restaurante;
+    private Cardapio cardapio; // Armazena o cardápio do restaurante
+    private ArrayList<Object> avaliacoes; // Armazena as avaliações feitas pelo aluno
+    private Restaurante restaurante; // Referência ao restaurante associado ao aluno
 
     public Aluno(String login, String senha, Restaurante restaurante) {
         super(login, senha);
-        this.avaliacoes = new ArrayList<>();
-        this.cardapio = new Cardapio();
-        this.restaurante = restaurante; 
-        carregarCardapio();
+        this.avaliacoes = new ArrayList<>(); // Inicializa a lista de avaliações como uma nova instância de ArrayList
+        this.cardapio = new Cardapio(); // Inicializa o cardápio do restaurante como uma nova instância de Cardapio
+        this.restaurante = restaurante;  // Armazena a referência do restaurante passada como parâmetro
+        carregarCardapio(); // Este método é chamado para carregar o cardápio do restaurante
     }
 
     Scanner sc = new Scanner(System.in);

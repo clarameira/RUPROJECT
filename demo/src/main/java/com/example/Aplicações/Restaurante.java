@@ -23,7 +23,9 @@ public class Restaurante {
 
     public Restaurante() {
         this.sc = new Scanner(System.in);
-        this.usuarios = new ArrayList<>();
+        this.usuarios = new ArrayList<>();  // Inicializa uma lista para armazenar os usuários do restaurante
+        /*Inicializa um objeto Aluno com valores nulos para nome e senha, 
+        e passa uma referência deste restaurante para o objeto Aluno e Admin*/
         this.aluno = new Aluno(null, null, this);
         this.admin = new Admin(null, null, this);
     }
